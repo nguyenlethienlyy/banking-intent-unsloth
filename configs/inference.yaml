@@ -1,0 +1,14 @@
+# =============================================================================
+# configs/inference.yaml
+# Inference configuration for banking intent classification
+# =============================================================================
+
+# Path to the saved model checkpoint (produced by train.py)
+model_checkpoint: "outputs/checkpoint"
+
+# Path to label map produced by preprocess_data.py
+label_map_path:   "sample_data/label_map.json"
+
+# Tokenizer settings
+max_seq_length:   128
+load_in_4bit:     true

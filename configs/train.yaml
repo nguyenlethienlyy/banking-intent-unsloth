@@ -1,0 +1,42 @@
+# =============================================================================
+# configs/train.yaml
+# Training configuration for banking intent classification with Unsloth + LoRA
+# =============================================================================
+
+# --- Data ---
+train_data_path:  "sample_data/train.csv"
+label_map_path:   "sample_data/label_map.json"
+
+# --- Model ---
+model_name:       "unsloth/llama-3.2-1b-bnb-4bit"   # smallest/fastest Unsloth model
+max_seq_length:   128
+load_in_4bit:     true
+
+# --- LoRA ---
+lora_r:           16
+lora_alpha:       16
+lora_dropout:     0.05
+target_modules:
+  - q_proj
+  - k_proj
+  - v_proj
+  - o_proj
+  - gate_proj
+  - up_proj
+  - down_proj
+
+# --- Training ---
+output_dir:       "outputs/checkpoint"
+num_epochs:       3
+per_device_train_batch_size: 8
+gradient_accumulation_steps: 2
+learning_rate:    2.0e-4
+lr_scheduler_type: "cosine"
+warmup_ratio:     0.1
+optimizer:        "adamw_8bit"
+weight_decay:     0.01
+fp16:             false
+bf16:             false          # set true if your GPU supports bfloat16
+logging_steps:    10
+save_strategy:    "epoch"
+seed:             42

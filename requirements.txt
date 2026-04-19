@@ -1,0 +1,11 @@
+unsloth[colab-new]
+transformers>=4.40.0
+trl>=0.8.6
+peft>=0.10.0
+accelerate>=0.29.0
+bitsandbytes>=0.43.0
+datasets>=2.19.0
+scikit-learn>=1.4.0
+pandas>=2.0.0
+pyyaml>=6.0
+torch>=2.2.0
