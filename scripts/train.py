@@ -160,7 +160,7 @@ def main(config_path: str):
         gradient_accumulation_steps = cfg["gradient_accumulation_steps"],
         learning_rate               = cfg["learning_rate"],
         lr_scheduler_type           = cfg["lr_scheduler_type"],
-        warmup_ratio                = cfg["warmup_ratio"],
+        warmup_steps                = 50,
         optim                       = cfg["optimizer"],
         weight_decay                = cfg["weight_decay"],
         fp16                        = cfg["fp16"],
@@ -172,12 +172,11 @@ def main(config_path: str):
     )
 
     trainer = SFTTrainer(
-        model        = model,
-        tokenizer    = tokenizer,
-        train_dataset= train_dataset,
-        dataset_text_field = "text",
-        max_seq_length     = cfg["max_seq_length"],
-        args               = training_args,
+        model               = model,
+        processing_class    = tokenizer,
+        train_dataset       = train_dataset,
+        dataset_text_field  = "text",
+        args                = training_args,
     )
 
     trainer.train()
