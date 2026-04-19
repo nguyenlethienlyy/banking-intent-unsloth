@@ -68,7 +68,7 @@ def preprocess():
 
     # ------------------------------------------------------------------ load
     print("\n[1/5] Loading BANKING77 from HuggingFace ...")
-    dataset = load_dataset("PolyAI/banking77")
+    dataset = load_dataset("banking77")
     label_names = dataset["train"].features["label"].names  # 77 intent strings
     original_id_to_name = {i: name for i, name in enumerate(label_names)}
 
